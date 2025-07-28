@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historique des Déclarations - Admin</title>
+    <link rel="stylesheet" href="historique.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <h1>Administration</h1>
+            <button class="logout-btn" onclick="window.location.href='/loginPage/login.html'">Déconnexion</button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="nav-tab" onclick="setActiveTab('dashboard')">
+                <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                </svg>
+                Dashboard
+            </button>
+            <button class="nav-tab" onclick="setActiveTab('users')">
+                <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                </svg>
+                Utilisateurs
+            </button>
+            <button class="nav-tab active" onclick="setActiveTab('history')">
+                <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                Historique
+            </button>
+        </div>
+
+        <!-- Stats Summary -->
+        <div class="stats-summary">
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-title">Total Déclarations</span>
+                    <svg class="stat-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                    </svg>
+                </div>
+                <div class="stat-value" id="total">-</div>   <!--somme des déclarations-->
+            </div>
+
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-title">Réparés</span>
+                    <svg class="stat-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                </div>
+                <div class="stat-value">89</div>
+            </div>
+
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-title">En Cours</span>
+                    <svg class="stat-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <div class="stat-value">45</div>
+            </div>
+
+            
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-title">Coût Total</span>
+                    <svg class="stat-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                    </svg>
+                </div>
+                <div class="stat-value">12,450€</div>
+            </div>
+        </div>
+
+        <!-- Filters Section -->
+        <div class="filters-section">
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label class="filter-label">Rechercher</label>
+                    <input type="text" class="filter-input" placeholder="ID, produit, client..." id="searchInput">
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Statut</label>
+                    <select class="filter-select" id="statusFilter">
+                        <option value="">Tous les statuts</option>
+                        <option value="repare">Réparé</option>
+                        <option value="en-cours">En cours</option>
+                        <option value="en-attente">En attente</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Technicien</label>
+                    <select class="filter-select" id="technicianFilter">
+                        <option value="">Tous les techniciens</option>
+                        <option value="marie-martin">Marie Martin</option>
+                        <option value="pierre-durand">Pierre Durand</option>
+                        <option value="sophie-leroy">Sophie Leroy</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <button class="filter-btn" onclick="applyFilters()">Filtrer</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page Title -->
+        <h2 class="page-title">Historique des Déclarations</h2>
+
+        <!-- Table Container -->
+        <div class="table-container">
+            <table class="declarations-table">
+                <thead class="table-header">
+                    <tr>
+                        <th>ID</th>
+                        <th>Produit</th>
+                        <th>Client</th>
+                        <th>Technicien</th>
+                        <th>Date Création</th>
+                        <th>Statut</th>
+                        <th>Coût</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="table-body" id="declarationsTableBody">
+                    <tr>
+                        <td class="font-medium">D001</td>
+                        <td>iPhone 12</td>
+                        <td>Jean Dupont</td>
+                        <td>Marie Martin</td>
+                        <td>15/01/2024</td>
+                        <td><span class="status-badge status-repare">Réparé</span></td>
+                        <td><span class="cost-display">150€</span></td>
+                        <td>
+                            <button class="filter-btn" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;" onclick="viewDetails('D001')">Détails</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="font-medium">D002</td>
+                        <td>Samsung Galaxy S21</td>
+                        <td>Sophie Bernard</td>
+                        <td>Pierre Durand</td>
+                        <td>14/01/2024</td>
+                        <td><span class="status-badge status-en-cours">En cours</span></td>
+                        <td><span class="cost-display">120€</span></td>
+                        <td>
+                            <button class="filter-btn" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;" onclick="viewDetails('D002')">Détails</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="font-medium">D003</td>
+                        <td>MacBook Pro</td>
+                        <td>Michel Leroy</td>
+                        <td>Marie Martin</td>
+                        <td>13/01/2024</td>
+                        <td><span class="status-badge status-en-attente">En attente</span></td>
+                        <td><span class="cost-pending">-</span></td>
+                        <td>
+                            <button class="filter-btn" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;" onclick="viewDetails('D003')">Détails</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="font-medium">D004</td>
+                        <td>iPad Air</td>
+                        <td>Julie Moreau</td>
+                        <td>Sophie Leroy</td>
+                        <td>12/01/2024</td>
+                        <td><span class="status-badge status-repare">Réparé</span></td>
+                        <td><span class="cost-display">95€</span></td>
+                        <td>
+                            <button class="filter-btn" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;" onclick="viewDetails('D004')">Détails</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="font-medium">D005</td>
+                        <td>Samsung Note 20</td>
+                        <td>Paul Dubois</td>
+                        <td>Pierre Durand</td>
+                        <td>11/01/2024</td>
+                        <td><span class="status-badge status-en-cours">En cours</span></td>
+                        <td><span class="cost-display">180€</span></td>
+                        <td>
+                            <button class="filter-btn" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;" onclick="viewDetails('D005')">Détails</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="historique.js"></script>
+</body>
+</html>
