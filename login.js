@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     try {
-      const response = await fetch("https://localhost:7009/api/Auth/Login", {
+      const response = await fetch("https://10.5.1.117:7009/api/Auth/Login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

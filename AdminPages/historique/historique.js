@@ -56,5 +56,5 @@ function setActiveTab(tab) {
         document.getElementById('statusFilter').addEventListener('change', applyFilters);
         document.getElementById('technicianFilter').addEventListener('change', applyFilters);
 
-        fetch("https://localhost")
+        fetch("https://10.5.1.117:7009/api/Admin/Declaration")
         document.getElementById('total').textContent = somme
