@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vérification d'Éligibilité - Responsable</title>
+    <link rel="stylesheet" href="eligibilite.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <h1>Responsable de Déclaration</h1>
+            <button class="logout-btn" onclick="window.location.href='login.html'">Déconnexion</button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <a href="eligibility-check.html" class="nav-tab active">
+                <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+                Vérification Éligibilité
+            </a>
+            <a href="new-declaration.html" class="nav-tab">
+                <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+                Nouvelle Déclaration
+            </a>
+            <a href="available-technicians.html" class="nav-tab">
+                <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                </svg>
+                Techniciens Disponibles
+            </a>
+        </div>
+
+        <!-- Eligibility Check Card -->
+        <div class="eligibility-card">
+            <div class="card-header">
+                <h2 class="card-title">Vérification d'Éligibilité</h2>
+                <p class="card-description">Vérifiez si le produit est éligible au service de réparation</p>
+            </div>
+            <div class="card-content">
+                <!-- Alert Messages -->
+                <div id="alertContainer"></div>
+
+                <!-- Product Info Display -->
+                <div id="productInfo" class="product-info" style="display: none;">
+                    <h4>Informations du Produit</h4>
+                    <div class="product-details">
+                        <div class="product-detail">
+                            <strong>Marque:</strong> <span id="productBrand">-</span>
+                        </div>
+                        <div class="product-detail">
+                            <strong>Modèle:</strong> <span id="productModel">-</span>
+                        </div>
+                        <div class="product-detail">
+                            <strong>Date d'achat:</strong> <span id="purchaseDate">-</span>
+                        </div>
+                        <div class="product-detail">
+                            <strong>Garantie:</strong> <span id="warrantyStatus">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <form id="eligibilityForm">
+                    <div class="form-group">
+                        <label class="form-label" for="serialNumber">Numéro de série du produit</label>
+                        <input 
+                            type="text" 
+                            class="form-input" 
+                            id="serialNumber" 
+                            placeholder="Entrez le numéro de série (ex: SN123456789)"
+                            required
+                        >
+                    </div>
+
+                    <button type="submit" class="check-btn" id="checkButton">
+                        <span class="button-text">Vérifier l'éligibilité</span>
+                    </button>
+                </form>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons" id="actionButtons" style="display: none;">
+                    <button class="btn-primary" onclick="proceedToDeclaration()">
+                        Procéder à la déclaration
+                    </button>
+                    <button class="btn-secondary" onclick="resetForm()">
+                        Nouvelle vérification
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Checks -->
+        <div class="recent-checks">
+            <div class="recent-checks-header">
+                <h3 class="recent-checks-title">Vérifications Récentes</h3>
+            </div>
+            <div class="recent-checks-list" id="recentChecksList">
+                <div class="recent-check-item">
+                    <div class="recent-check-info">
+                        <div class="recent-check-serial">SN987654321</div>
+                        <div class="recent-check-time">Il y a 2 heures</div>
+                    </div>
+                    <span class="recent-check-status status-eligible">Éligible</span>
+                </div>
+                <div class="recent-check-item">
+                    <div class="recent-check-info">
+                        <div class="recent-check-serial">SN456789123</div>
+                        <div class="recent-check-time">Il y a 1 jour</div>
+                    </div>
+                    <span class="recent-check-status status-not-eligible">Non éligible</span>
+                </div>
+                <div class="recent-check-item">
+                    <div class="recent-check-info">
+                        <div class="recent-check-serial">SN789123456</div>
+                        <div class="recent-check-time">Il y a 2 jours</div>
+                    </div>
+                    <span class="recent-check-status status-eligible">Éligible</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="eligibilite.js"></script>
+</body>
+</html>

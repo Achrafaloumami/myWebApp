@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>utilisateurs</title>
+    <link rel="stylesheet" href="users.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <h1>Administration</h1>
+            <button class="logout-btn" id="logout-btn">Déconnexion</button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+     <div class="main-container">
+        <!-- Navigation Tabs -->
+         <div class="nav-tabs">
+            <button class="nav-tab" onclick="setActiveTab('dashboard')">
+                <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                </svg>
+                Dashboard
+            </button>
+            <button class="nav-tab active" onclick="setActiveTab('users')">
+                <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                </svg>
+                Utilisateurs
+            </button>
+            <button class="nav-tab" onclick="setActiveTab('history')">
+                <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                Historique
+            </button>
+            
+         </div>
+
+
+
+         <!-- Page Title -->
+          <div class="page-header">
+            <h2 class="page-title"> Utilisateurs</h2>
+            <button class="addUser-btn" id="addUser-btn">Ajouter un utilisateur</button>
+        </div>
+        <!-- Table Container -->
+        <div class="table-container">
+            <table class="users-table" id="users-table">
+                <thead class="table-header">
+                    <tr>
+                        <th>ID</th>
+                        <th>Prenom</th>
+                        <th>Nom</th>
+                        <th>Fonction</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+          
+            </table>
+           </div>
+
+
+
+     </div>
+
+
+
+
+
+
+
+
+
+</body>
+
+<script src="users.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

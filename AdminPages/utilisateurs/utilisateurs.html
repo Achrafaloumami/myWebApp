@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Utilisateurs - Admin</title>
+    <link rel="stylesheet" href="utilisateurs.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <h1>Administration</h1>
+            <button class="logout-btn">Déconnexion</button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="nav-tab" onclick="setActiveTab('dashboard')">
+                <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                </svg>
+                Dashboard
+            </button>
+            <button class="nav-tab active" onclick="setActiveTab('users')">
+                <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                </svg>
+                Utilisateurs
+            </button>
+            <button class="nav-tab" onclick="setActiveTab('history')">
+                <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                Historique
+            </button>
+        </div>
+
+        <!-- Users Stats -->
+        <div class="users-stats">
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-title">Total Utilisateurs</span>
+                    <svg class="stat-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                    </svg>
+                </div>
+                <div class="stat-value">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-title">Techniciens</span>
+                    <svg class="stat-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                </div>
+                <div class="stat-value">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-title">Responsables</span>
+                    <svg class="stat-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                </div>
+                <div class="stat-value">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-title">Actifs</span>
+                    <svg class="stat-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <div class="stat-value">-</div>
+            </div>
+        </div>
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <h2 class="page-title">Gestion des Utilisateurs</h2>
+            <button class="add-user-btn" onclick="openAddUserModal()">
+                <svg class="add-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+                Nouvel Utilisateur
+            </button>
+        </div>
+
+        <!-- Search and Filters -->
+        <div class="search-filters">
+            <div class="search-grid">
+                <input type="text" class="search-input" placeholder="Rechercher par nom, email..." id="searchInput">
+                <select class="filter-select" id="typeFilter">
+                    <option value="">Tous les types</option>
+                    <option value="admin">Administrateur</option>
+                    <option value="responsable">Responsable</option>
+                    <option value="technicien">Technicien</option>
+                </select>
+                <button class="search-btn" onclick="applyFilters()">Filtrer</button>
+            </div>
+        </div>
+
+        <!-- Users Table -->
+        <div class="users-table-container">
+            <table class="users-table">
+                <thead class="table-header">
+                    <tr>
+                        <th>Utilisateur</th>
+                        <th>Type</th>
+                        <th>Spécialité</th>
+                        <th>Statut</th>
+                        <th>Dernière Connexion</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="table-body" id="usersTableBody">
+                    <tr>
+                        <td>
+                            <div class="user-info">
+                                <div class="user-avatar">MM</div>
+                                <div class="user-details">
+                                    <h3>Marie Martin</h3>
+                                    <p>marie.martin@email.com</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="user-type-badge type-technicien">Technicien</span></td>
+                        <td>Électronique</td>
+                        <td><span class="status-badge status-active">Actif</span></td>
+                        <td>Il y a 2 heures</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="action-btn edit" onclick="editUser(1)">Modifier</button>
+                                <button class="action-btn toggle" onclick="toggleUserStatus(1)">Désactiver</button>
+                                <button class="action-btn delete" onclick="deleteUser(1)">Supprimer</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="user-info">
+                                <div class="user-avatar">PD</div>
+                                <div class="user-details">
+                                    <h3>Pierre Durand</h3>
+                                    <p>pierre.durand@email.com</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="user-type-badge type-technicien">Technicien</span></td>
+                        <td>Informatique</td>
+                        <td><span class="status-badge status-active">Actif</span></td>
+                        <td>Il y a 1 jour</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="action-btn edit" onclick="editUser(2)">Modifier</button>
+                                <button class="action-btn toggle" onclick="toggleUserStatus(2)">Désactiver</button>
+                                <button class="action-btn delete" onclick="deleteUser(2)">Supprimer</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="user-info">
+                                <div class="user-avatar">JM</div>
+                                <div class="user-details">
+                                    <h3>Julie Moreau</h3>
+                                    <p>julie.moreau@email.com</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="user-type-badge type-responsable">Responsable</span></td>
+                        <td>Gestion</td>
+                        <td><span class="status-badge status-active">Actif</span></td>
+                        <td>Il y a 3 heures</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="action-btn edit" onclick="editUser(3)">Modifier</button>
+                                <button class="action-btn toggle" onclick="toggleUserStatus(3)">Désactiver</button>
+                                <button class="action-btn delete" onclick="deleteUser(3)">Supprimer</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="user-info">
+                                <div class="user-avatar">SL</div>
+                                <div class="user-details">
+                                    <h3>Sophie Leroy</h3>
+                                    <p>sophie.leroy@email.com</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="user-type-badge type-technicien">Technicien</span></td>
+                        <td>Électronique</td>
+                        <td><span class="status-badge status-inactive">Inactif</span></td>
+                        <td>Il y a 1 semaine</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="action-btn edit" onclick="editUser(4)">Modifier</button>
+                                <button class="action-btn toggle" onclick="toggleUserStatus(4)">Activer</button>
+                                <button class="action-btn delete" onclick="deleteUser(4)">Supprimer</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="user-info">
+                                <div class="user-avatar">LB</div>
+                                <div class="user-details">
+                                    <h3>Lucas Bernard</h3>
+                                    <p>lucas.bernard@email.com</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="user-type-badge type-responsable">Responsable</span></td>
+                        <td>Support Client</td>
+                        <td><span class="status-badge status-active">Actif</span></td>
+                        <td>Il y a 5 heures</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="action-btn edit" onclick="editUser(5)">Modifier</button>
+                                <button class="action-btn toggle" onclick="toggleUserStatus(5)">Désactiver</button>
+                                <button class="action-btn delete" onclick="deleteUser(5)">Supprimer</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Add/Edit User Modal -->
+    <div class="modal-overlay" id="userModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">Nouvel Utilisateur</h3>
+                <p class="modal-description" id="modalDescription">Ajoutez un nouveau responsable ou technicien au système.</p>
+            </div>
+            <div class="modal-content">
+                <form id="userForm">
+                    <div class="form-group">
+                        <label class="form-label" for="userName">Nom complet</label>
+                        <input type="text" class="form-input" id="userName" placeholder="Nom et prénom" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="userEmail">Email</label>
+                        <input type="email" class="form-input" id="userEmail" placeholder="email@exemple.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="userType">Type d'utilisateur</label>
+                        <select class="form-select" id="userType" required>
+                            <option value="">Sélectionnez le type</option>
+                            <option value="responsable">Responsable de déclaration</option>
+                            <option value="technicien">Technicien</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="userSpecialty">Spécialité</label>
+                        <input type="text" class="form-input" id="userSpecialty" placeholder="Ex: Électronique, Informatique..." required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="userPhone">Téléphone</label>
+                        <input type="tel" class="form-input" id="userPhone" placeholder="06 12 34 56 78">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn secondary" onclick="closeModal()">Annuler</button>
+                <button class="modal-btn primary" onclick="saveUser()">Créer l'utilisateur</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="utilisateurs.js"></script>
+</body>
+</html>

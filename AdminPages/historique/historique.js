@@ -1,3 +1,9 @@
+document.getElementById('logout-btn').addEventListener('click', function() {
+    window.location.href = '../../index.html'
+})
+
+document.getElementById('totaldeclaration').innerText = "ss";
+
 function setActiveTab(tab) {
             // Simulation de navigation - dans une vraie app, cela redirigerait
             console.log('Navigation vers:', tab);
@@ -7,6 +13,7 @@ function setActiveTab(tab) {
                 window.location.href = '/admin#users';
             }
         }
+        
 
         // Fonction de filtrage
         function applyFilters() {
@@ -56,5 +63,10 @@ function setActiveTab(tab) {
         document.getElementById('statusFilter').addEventListener('change', applyFilters);
         document.getElementById('technicianFilter').addEventListener('change', applyFilters);
 
-        fetch("https://10.5.1.117:7009/api/Admin/Declaration")
-        document.getElementById('total').textContent = somme
+        fetch("https://localhost:7009/api/Admin/Declaration")
+        .then(response => response.json)
+        .then(data =>{
+            document.getElementById('totaldeclaration').textContent  = `Coût total des déclarations : ${data.totalDeclaration}`;
+        }
+
+        )

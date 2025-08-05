@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     try {
-      const response = await fetch("https://10.5.1.117:7009/api/Auth/Login", {
+      const response = await fetch("https://localhost:7009/api/Auth/Login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (response.ok) {
         // Redirection selon le message retourné par le back-end
         if (result.includes("Admin")) {
-          window.location.href= '../AdminPages/Home/AdminHome.html';
+          window.location.href= 'AdminPages/historique/historique.html';
         } else if (result.includes("Declaration")) {
           window.location.href = "responsable-home.html";
         } else if (result.includes("Technical")) {

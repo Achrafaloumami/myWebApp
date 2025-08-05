@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const result = await response.text();
 
             if (response.ok) {
-                window.location.href = "../Home/AdminHome.html";
+                window.location.href = "../utilisateurs/users.html";
             } else {
                 alert(result);
             }

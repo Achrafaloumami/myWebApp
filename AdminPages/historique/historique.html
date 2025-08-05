@@ -11,7 +11,7 @@
     <header class="header">
         <div class="header-content">
             <h1>Administration</h1>
-            <button class="logout-btn" onclick="window.location.href='/loginPage/login.html'">Déconnexion</button>
+            <button class="logout-btn" id="logout-btn">Déconnexion</button>
         </div>
     </header>
 
@@ -48,7 +48,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
                     </svg>
                 </div>
-                <div class="stat-value" id="total">-</div>   <!--somme des déclarations-->
+                <div class="stat-value" id="totaldeclaration">-</div>   <!--somme des déclarations-->
             </div>
 
 
@@ -60,7 +60,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                     </svg>
                 </div>
-                <div class="stat-value">89</div>
+                <div class="stat-value" id="Repare">-</div>
             </div>
 
 
@@ -71,7 +71,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
                 </div>
-                <div class="stat-value">45</div>
+                <div class="stat-value" id="enCours">-</div>
             </div>
 
             
@@ -82,7 +82,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
                     </svg>
                 </div>
-                <div class="stat-value">12,450€</div>
+                <div class="stat-value" id="totalPrix">0€</div>
             </div>
         </div>
 
@@ -106,9 +106,15 @@
                     <label class="filter-label">Technicien</label>
                     <select class="filter-select" id="technicianFilter">
                         <option value="">Tous les techniciens</option>
-                        <option value="marie-martin">Marie Martin</option>
+                        <!-- <option value="marie-martin">Marie Martin</option>
                         <option value="pierre-durand">Pierre Durand</option>
-                        <option value="sophie-leroy">Sophie Leroy</option>
+                        <option value="sophie-leroy">Sophie Leroy</option> -->
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Marjane</label>
+                    <select class="filter-select" id="MarjaneFilter">
+                        <option value="">Tous les Marjanes</option>
                     </select>
                 </div>
                 <div class="filter-group">
@@ -122,85 +128,29 @@
 
         <!-- Table Container -->
         <div class="table-container">
-            <table class="declarations-table">
+            <table class="declarations-table" id="declarations-table">
                 <thead class="table-header">
                     <tr>
                         <th>ID</th>
                         <th>Produit</th>
                         <th>Client</th>
-                        <th>Technicien</th>
-                        <th>Date Création</th>
+                        <!-- <th>Technicien</th> -->
+                        <!-- <th>Date Création</th> -->
                         <th>Statut</th>
                         <th>Coût</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody class="table-body" id="declarationsTableBody">
-                    <tr>
-                        <td class="font-medium">D001</td>
-                        <td>iPhone 12</td>
-                        <td>Jean Dupont</td>
-                        <td>Marie Martin</td>
-                        <td>15/01/2024</td>
-                        <td><span class="status-badge status-repare">Réparé</span></td>
-                        <td><span class="cost-display">150€</span></td>
-                        <td>
-                            <button class="filter-btn" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;" onclick="viewDetails('D001')">Détails</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="font-medium">D002</td>
-                        <td>Samsung Galaxy S21</td>
-                        <td>Sophie Bernard</td>
-                        <td>Pierre Durand</td>
-                        <td>14/01/2024</td>
-                        <td><span class="status-badge status-en-cours">En cours</span></td>
-                        <td><span class="cost-display">120€</span></td>
-                        <td>
-                            <button class="filter-btn" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;" onclick="viewDetails('D002')">Détails</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="font-medium">D003</td>
-                        <td>MacBook Pro</td>
-                        <td>Michel Leroy</td>
-                        <td>Marie Martin</td>
-                        <td>13/01/2024</td>
-                        <td><span class="status-badge status-en-attente">En attente</span></td>
-                        <td><span class="cost-pending">-</span></td>
-                        <td>
-                            <button class="filter-btn" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;" onclick="viewDetails('D003')">Détails</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="font-medium">D004</td>
-                        <td>iPad Air</td>
-                        <td>Julie Moreau</td>
-                        <td>Sophie Leroy</td>
-                        <td>12/01/2024</td>
-                        <td><span class="status-badge status-repare">Réparé</span></td>
-                        <td><span class="cost-display">95€</span></td>
-                        <td>
-                            <button class="filter-btn" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;" onclick="viewDetails('D004')">Détails</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="font-medium">D005</td>
-                        <td>Samsung Note 20</td>
-                        <td>Paul Dubois</td>
-                        <td>Pierre Durand</td>
-                        <td>11/01/2024</td>
-                        <td><span class="status-badge status-en-cours">En cours</span></td>
-                        <td><span class="cost-display">180€</span></td>
-                        <td>
-                            <button class="filter-btn" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;" onclick="viewDetails('D005')">Détails</button>
-                        </td>
-                    </tr>
+                <tbody>
+
                 </tbody>
+
+
+                
             </table>
         </div>
     </div>
 
-    <script src="historique.js"></script>
+    <script src="histori.js"></script>
 </body>
 </html>

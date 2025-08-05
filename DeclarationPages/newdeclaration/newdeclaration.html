@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nouvelle Déclaration - Responsable</title>
+    <link rel="stylesheet" href="newdeclaration.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <h1>Responsable de Déclaration</h1>
+            <button class="logout-btn" onclick="window.location.href='login.html'">Déconnexion</button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            
+            <a href="new-declaration.html" class="nav-tab active">
+                <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+                Nouvelle Déclaration
+            </a>
+            <a href="available-technicians.html" class="nav-tab">
+                <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                </svg>
+                Historique de déclarations
+            </a>
+        </div>
+
+        <!-- Pre-filled Product Info Banner -->
+        <div class="product-info-banner" id="productInfoBanner" style="display: none;">
+            <div class="product-info-icon">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+            </div>
+            <div class="product-info-content">
+                <h3>Produit éligible détecté</h3>
+                <p id="productInfoText">Les informations du produit ont été pré-remplies automatiquement.</p>
+            </div>
+        </div>
+
+        <!-- Success Message -->
+        <div class="success-message" id="successMessage">
+            <strong>Déclaration créée avec succès !</strong> La déclaration a été enregistrée et assignée au technicien sélectionné.
+        </div>
+
+        <!-- Form -->
+        <form id="declarationForm" class="declarationForm">
+            <!-- Product Information Card -->
+            <div class="form-card">
+                <div class="card-header">
+                    <h2 class="card-title">Informations du Produit</h2>
+                </div>
+                <div class="card-content">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label required" for="serialNumber">Code barre du produit</label>
+                            <div class="input-with-button">
+                                <input type="number" class="form-input" id="serialNumber" placeholder="Code Barre du produit" required>
+                                <button type="button" class="eligibility-btn" onclick="checkEligibility()">Vérifier</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="purchaseDate">Date d'achat</label>
+                            <input type="date" class="form-input" id="purchaseDate">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label required" for="EndWarranty">Fin de garantie</label>
+                            <input type="text" class="form-input" id="EndWarranty" placeholder="-" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label required" for="productName">Nom du produit</label>
+                            <input type="text" class="form-input" id="productName" placeholder="Ex: iPhone 12" required>
+                        </div>
+                        
+                        
+                        <div class="form-group full-width">
+                            <label class="form-label required" for="defectDescription">Description du défaut</label>
+                            <textarea class="form-textarea" id="defectDescription" placeholder="Décrivez le problème rencontré en détail..." required></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Client Information Card -->
+            <div class="form-card">
+                <div class="card-header">
+                    <h2 class="card-title">Coordonnées du Client</h2>
+                </div>
+                <div class="card-content">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label required" for="clientFirstName">Prénom</label>
+                            <input type="text" class="form-input" id="clientFirstName" placeholder="Prénom du client" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label required" for="clientLastName">Nom</label>
+                            <input type="text" class="form-input" id="clientLastName" placeholder="Nom du client" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label required" for="clientEmail">Email</label>
+                            <input type="email" class="form-input" id="clientEmail" placeholder="email@exemple.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label required" for="clientPhone">Téléphone</label>
+                            <input type="tel" class="form-input" id="clientPhone" placeholder="06 12 34 56 78" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label class="form-label required" for="clientAddress">Adresse complète</label>
+                            <textarea class="form-textarea" id="clientAddress" placeholder="Adresse complète du client" required></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technician Assignment Card -->
+            <div class="form-card">
+                <div class="card-header">
+                    <h2 class="card-title">Attribution du Technicien</h2>
+                </div>
+                <div class="card-content">
+                    <div class="technician-grid" id="technicianGrid">
+                        <!-- Technicians will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!-- Submit Section -->
+        <div class="submit-section">
+            <button type="submit" class="submit-btn" id="submitBtn" form="declarationForm">
+                <span class="button-text">Créer la déclaration</span>
+            </button>
+        </div>
+    </div>
+
+    <script src="newdeclaration.js"></script>
+</body>
+</html>
